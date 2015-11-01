@@ -250,20 +250,20 @@ public class BigTime extends CanvasWatchFaceService {
                 canvas.drawRect(0, 0, bounds.width(), bounds.height(), mBackgroundPaint);
             }
 
-            int height = (int) (canvas.getHeight() - (mXOffset * 2));
+            int height = (int) (canvas.getHeight());
             int xPos = canvas.getWidth() / 2;
 
             mTextPaint.setTextSize(height / 2);
             mTextPaint.setTextAlign(Paint.Align.CENTER);
             mTextPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
-            // Draw H:MM in ambient mode or H:MM:SS in interactive mode.
+            // Draw HH:MM
             mTime.setToNow();
             String hour = String.format("%02d", mTime.hour);
             String minute = String.format("%02d", mTime.minute);
 
             canvas.drawText(hour, xPos, height / 2, mTextPaint);
-            canvas.drawText(minute, xPos, height, mTextPaint);
+            canvas.drawText(minute, xPos, height - mXOffset, mTextPaint);
         }
 
         /**
